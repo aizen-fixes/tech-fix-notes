@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Excel Inventory Sheet: Track Stock In and Out With Simple Formulas | Tech Fix Notes</title>
+<meta name="description" content="Build an Excel stock monitoring sheet that updates automatically. Uses SUMIFS and IF formulas that work in Excel 2019 and newer, with a low-stock warning.">
+
+
+<meta property="og:title" content="Excel Inventory Sheet: Track Stock In and Out With Simple Formulas | Tech Fix Notes">
+<meta property="og:description" content="Build an Excel stock monitoring sheet that updates automatically. Uses SUMIFS and IF formulas that work in Excel 2019 and newer, with a low-stock warning.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Tech Fix Notes">
+
+<link rel="stylesheet" href="../static/style.css">
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Excel Inventory Sheet: Track Stock In and Out With Simple Formulas", "description": "Build an Excel stock monitoring sheet that updates automatically. Uses SUMIFS and IF formulas that work in Excel 2019 and newer, with a low-stock warning.", "datePublished": "2026-10-15", "dateModified": "2026-10-15", "author": {"@type": "Person", "name": "Aizen"}, "publisher": {"@type": "Organization", "name": "Tech Fix Notes"}}</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="../index.html">Tech Fix Notes</a>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.body.classList.toggle('nav-open')">&#9776;</button>
+    <nav class="main-nav">
+      <a href="../category/printers.html">Printers</a><a href="../category/windows-pc.html">Windows &amp; PC</a><a href="../category/excel.html">Excel Tutorials</a><a href="../category/networking.html">Networking</a>
+      <a href="../about.html">About</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+    <form class="search-mini" action="../search.html" method="get" role="search">
+      <input type="search" name="q" placeholder="Search fixes..." aria-label="Search">
+    </form>
+  </div>
+</header>
+<main class="wrap">
+
+<nav class="crumbs" aria-label="Breadcrumb">
+  <a href="../index.html">Home</a> &rsaquo;
+  <a href="../category/excel.html">Excel Tutorials</a> &rsaquo;
+  <span>Excel Inventory Sheet: Track Stock In and Out With Simple Formulas</span>
+</nav>
+<article class="post">
+  <h1>Excel Inventory Sheet: Track Stock In and Out With Simple Formulas</h1>
+  <p class="meta">By Aizen &middot; October 15, 2026 &middot; 4 min read</p>
+  <div class="prose"><p>You do not need special software to monitor stock. With three sheets and two formulas, Excel can show your <strong>current stock</strong>, mark items that need reordering, and update automatically every time you record an entry.</p>
+<p>This guide uses <strong>SUMIFS</strong> and <strong>IF</strong>, which work in Excel 2010 and newer, including Excel 2019.</p>
+<h2 id="what-you-will-build">What you will build</h2>
+<p>Three sheets in one workbook:</p>
+<ol>
+<li><strong>Inventory</strong>: one row per item, with the current stock calculated for you</li>
+<li><strong>Stock In</strong>: a log of everything received</li>
+<li><strong>Stock Out</strong>: a log of everything sold or used</li>
+</ol>
+<h2 id="step-1-create-the-inventory-sheet">Step 1: Create the Inventory sheet</h2>
+<p>Rename a sheet to <code>Inventory</code> and set up these columns in row 1:</p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+<th>G</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Item Code</td>
+<td>Item Name</td>
+<td>Reorder Level</td>
+<td>Total In</td>
+<td>Total Out</td>
+<td>Current Stock</td>
+<td>Status</td>
+</tr>
+</tbody>
+</table>
+<p>Fill in rows 2 and below with your item codes and names, and a reorder level for each (the number at which you want a warning).</p>
+<p>For example:</p>
+<table>
+<thead>
+<tr>
+<th>Item Code</th>
+<th>Item Name</th>
+<th>Reorder Level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A001</td>
+<td>A4 Paper Ream</td>
+<td>10</td>
+</tr>
+<tr>
+<td>A002</td>
+<td>Black Ink Bottle</td>
+<td>5</td>
+</tr>
+<tr>
+<td>A003</td>
+<td>USB Cable</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<h2 id="step-2-create-the-stock-in-and-stock-out-sheets">Step 2: Create the Stock In and Stock Out sheets</h2>
+<p>Create two sheets named <code>Stock In</code> and <code>Stock Out</code>. Use the same columns in both:</p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Date</td>
+<td>Item Code</td>
+<td>Quantity</td>
+</tr>
+</tbody>
+</table>
+<p>Every time you receive stock, add a new row in <strong>Stock In</strong>. Every time you sell or use stock, add a row in <strong>Stock Out</strong>.</p>
+<p>If you already have stock on hand, enter it as your first <strong>Stock In</strong> entry, dated the day you start.</p>
+<h2 id="step-3-add-the-formulas-on-the-inventory-sheet">Step 3: Add the formulas on the Inventory sheet</h2>
+<p>Click cell <strong>D2</strong> on the Inventory sheet and enter:</p>
+<pre><code>=SUMIFS('Stock In'!$C:$C,'Stock In'!$B:$B,$A2)
+</code></pre>
+<p>This adds up all quantities in Stock In for the item code in column A.</p>
+<p>Click <strong>E2</strong> and enter:</p>
+<pre><code>=SUMIFS('Stock Out'!$C:$C,'Stock Out'!$B:$B,$A2)
+</code></pre>
+<p>Click <strong>F2</strong> and enter:</p>
+<pre><code>=D2-E2
+</code></pre>
+<p>Click <strong>G2</strong> and enter:</p>
+<pre><code>=IF(F2&lt;=0,&quot;OUT OF STOCK&quot;,IF(F2&lt;=C2,&quot;REORDER&quot;,&quot;OK&quot;))
+</code></pre>
+<p>Select D2:G2 and drag the fill handle (the small square in the corner) down to copy the formulas to all your items.</p>
+<h2 id="step-4-add-a-dropdown-for-item-codes">Step 4: Add a dropdown for item codes</h2>
+<p>This prevents typing mistakes that would break your totals.</p>
+<ol>
+<li>Go to the <strong>Stock In</strong> sheet and select column B (from B2 downward).</li>
+<li>Click <strong>Data &gt; Data Validation</strong>.</li>
+<li>Under <strong>Allow</strong>, choose <strong>List</strong>.</li>
+<li>In <strong>Source</strong>, enter <code>=Inventory!$A$2:$A$200</code>.</li>
+<li>Click OK. Repeat for the <strong>Stock Out</strong> sheet.</li>
+</ol>
+<p>Now each entry uses a code from your Inventory list.</p>
+<h2 id="step-5-highlight-low-stock-automatically">Step 5: Highlight low stock automatically</h2>
+<ol>
+<li>On the Inventory sheet, select the <strong>G</strong> column data (G2 downward).</li>
+<li>Click <strong>Home &gt; Conditional Formatting &gt; Highlight Cells Rules &gt; Text that Contains</strong>.</li>
+<li>Type <code>REORDER</code> and choose a yellow fill. Click OK.</li>
+<li>Repeat for <code>OUT OF STOCK</code> with a red fill and <code>OK</code> with a green fill.</li>
+</ol>
+<h2 id="step-6-show-the-item-name-automatically-on-the-log-sheets-optional">Step 6: Show the item name automatically on the log sheets (optional)</h2>
+<p>On the <strong>Stock In</strong> sheet, add a column D with the heading <strong>Item Name</strong>. In D2 enter:</p>
+<pre><code>=IFERROR(VLOOKUP(B2,Inventory!$A:$B,2,FALSE),&quot;&quot;)
+</code></pre>
+<p>Copy it down. The name now appears when you pick a code. Use <code>VLOOKUP</code> rather than <code>XLOOKUP</code> if you use Excel 2019, because <code>XLOOKUP</code> is only available in newer versions (Excel 2021 and Microsoft 365).</p>
+<h2 id="step-7-add-the-stock-value-optional">Step 7: Add the stock value (optional)</h2>
+<p>Add a <strong>Unit Cost</strong> column in Inventory (for example, column H) and a <strong>Stock Value</strong> column (column I) with:</p>
+<pre><code>=F2*H2
+</code></pre>
+<p>At the bottom, a total is simply:</p>
+<pre><code>=SUM(I2:I200)
+</code></pre>
+<h2 id="tips-to-avoid-mistakes">Tips to avoid mistakes</h2>
+<ul>
+<li>Keep item codes <strong>unique</strong> and never reuse a code for a different item</li>
+<li>Do not type over formulas. Select and <strong>protect</strong> the formula columns using <strong>Review &gt; Protect Sheet</strong></li>
+<li>Format your log entries as a <strong>Table</strong> (Insert &gt; Table) so the ranges grow as you add rows</li>
+<li>Back up the file regularly (copy it to a cloud drive or flash drive)</li>
+<li>Record entries the same day to keep numbers accurate</li>
+</ul>
+<h2 id="common-problems">Common problems</h2>
+<p><strong>The totals show 0 even though I made entries.</strong>
+Check that item codes match exactly. A trailing space or a lowercase letter will break the match. The dropdown from Step 4 prevents this.</p>
+<p><strong>Stock goes negative.</strong>
+Someone recorded more going out than was ever received. Check your Stock Out entries and any missing Stock In entries.</p>
+<p><strong>Formulas show as text.</strong>
+The cell is formatted as Text. Change the format to <strong>General</strong> and re-enter the formula.</p>
+<p>Want a ready-made template or a version with monthly reports? Tell me on the <a href="../contact.html">Contact page</a> what you need.</p></div>
+  <aside class="help-box">
+    <strong>Still stuck?</strong> Tell me your device model, your operating system and the exact error message on the
+    <a href="../contact.html">Contact page</a> and I will try to help.
+  </aside>
+</article>
+<section class="related"><h2>More guides you may need</h2><div class="grid">
+<article class="card">
+  <span class="tag">Windows &amp; PC</span>
+  <h3><a href="../articles/computer-running-slow-fixes.html">Computer Running Slow? 7 Free Fixes to Try Today</a></h3>
+  <p>Slow Windows PC? These 7 free fixes, from startup programs to disk cleanup and system file repair, can speed it up without buying anything.</p>
+  <p class="meta">October 15, 2026 &middot; 3 min read</p>
+</article>
+<article class="card">
+  <span class="tag">Printers</span>
+  <h3><a href="../articles/epson-printer-paper-out-error.html">Epson Printer Says &quot;Paper Out&quot; but Paper Is Loaded? Try This Fix First</a></h3>
+  <p>Your Epson printer shows a Paper Out error even though paper is loaded. Here are the causes and 7 fixes, from the quickest to the most thorough.</p>
+  <p class="meta">October 15, 2026 &middot; 5 min read</p>
+</article>
+<article class="card">
+  <span class="tag">Networking</span>
+  <h3><a href="../articles/lan-connected-no-internet.html">LAN Connected but No Internet? Step-by-Step Troubleshooting</a></h3>
+  <p>Your computer shows it is connected to the network but websites will not open. Follow these steps to find whether the problem is the PC, router, DNS or provider.</p>
+  <p class="meta">October 15, 2026 &middot; 3 min read</p>
+</article></div></section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>Tech Fix Notes</strong> &mdash; Fix it yourself: PC, printer, Excel and network guides</p>
+    <p class="footer-links">
+      <a href="../about.html">About</a>
+      <a href="../contact.html">Contact</a>
+      <a href="../privacy-policy.html">Privacy Policy</a>
+      <a href="../disclaimer.html">Disclaimer</a>
+    </p>
+    <p class="small">&copy; 2026 Tech Fix Notes. All rights reserved.</p>
+  </div>
+</footer>
+</body>
+</html>

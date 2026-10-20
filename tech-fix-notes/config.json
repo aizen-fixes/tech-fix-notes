@@ -1,0 +1,37 @@
+{
+  "site_name": "Tech Fix Notes",
+  "tagline": "Fix it yourself: PC, printer, Excel and network guides",
+  "description": "Plain-language, step-by-step guides for everyday computer problems, with the quickest fix first.",
+  "author_name": "Aizen",
+  "language": "en",
+
+  "site_url": "",
+  "contact_form_url": "",
+  "contact_email": "",
+
+  "adsense_publisher_id": "",
+  "adsense_article_slot": "",
+
+  "categories": [
+    {
+      "slug": "printers",
+      "name": "Printers",
+      "description": "Fix printer errors, paper problems, driver issues and print quality problems."
+    },
+    {
+      "slug": "windows-pc",
+      "name": "Windows & PC",
+      "description": "Troubleshoot slow computers, no-display problems, boot issues and Windows errors."
+    },
+    {
+      "slug": "excel",
+      "name": "Excel Tutorials",
+      "description": "Practical Excel formulas and templates for inventory, reports and everyday work."
+    },
+    {
+      "slug": "networking",
+      "name": "Networking",
+      "description": "Fix LAN, WiFi and internet connection problems step by step."
+    }
+  ]
+}

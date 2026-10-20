@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LAN Connected but No Internet? Step-by-Step Troubleshooting | Tech Fix Notes</title>
+<meta name="description" content="Your computer shows it is connected to the network but websites will not open. Follow these steps to find whether the problem is the PC, router, DNS or provider.">
+
+
+<meta property="og:title" content="LAN Connected but No Internet? Step-by-Step Troubleshooting | Tech Fix Notes">
+<meta property="og:description" content="Your computer shows it is connected to the network but websites will not open. Follow these steps to find whether the problem is the PC, router, DNS or provider.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Tech Fix Notes">
+
+<link rel="stylesheet" href="../static/style.css">
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "LAN Connected but No Internet? Step-by-Step Troubleshooting", "description": "Your computer shows it is connected to the network but websites will not open. Follow these steps to find whether the problem is the PC, router, DNS or provider.", "datePublished": "2026-10-15", "dateModified": "2026-10-15", "author": {"@type": "Person", "name": "Aizen"}, "publisher": {"@type": "Organization", "name": "Tech Fix Notes"}}</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="../index.html">Tech Fix Notes</a>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.body.classList.toggle('nav-open')">&#9776;</button>
+    <nav class="main-nav">
+      <a href="../category/printers.html">Printers</a><a href="../category/windows-pc.html">Windows &amp; PC</a><a href="../category/excel.html">Excel Tutorials</a><a href="../category/networking.html">Networking</a>
+      <a href="../about.html">About</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+    <form class="search-mini" action="../search.html" method="get" role="search">
+      <input type="search" name="q" placeholder="Search fixes..." aria-label="Search">
+    </form>
+  </div>
+</header>
+<main class="wrap">
+
+<nav class="crumbs" aria-label="Breadcrumb">
+  <a href="../index.html">Home</a> &rsaquo;
+  <a href="../category/networking.html">Networking</a> &rsaquo;
+  <span>LAN Connected but No Internet? Step-by-Step Troubleshooting</span>
+</nav>
+<article class="post">
+  <h1>LAN Connected but No Internet? Step-by-Step Troubleshooting</h1>
+  <p class="meta">By Aizen &middot; October 15, 2026 &middot; 3 min read</p>
+  <div class="prose"><p>The network icon says you are connected, but websites will not load. This usually means your computer is talking to the router, but the router (or something after it) is not passing traffic to the internet.</p>
+<p>The fastest way to fix it is to find <strong>where</strong> the break is. This guide helps you do that in a few minutes.</p>
+<h2 id="step-1-find-out-how-big-the-problem-is">Step 1: Find out how big the problem is</h2>
+<p>Ask yourself:</p>
+<ul>
+<li>Do other devices (phones, other PCs) have internet on the same network?</li>
+<li>Does it fail on every website or only some?</li>
+<li>Did it stop suddenly, or after a Windows update, a power cut or a router change?</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Result</th>
+<th>Likely cause</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Only one computer has no internet</td>
+<td>Problem is on that computer (settings, adapter, driver)</td>
+</tr>
+<tr>
+<td>All devices have no internet</td>
+<td>Router, modem or the internet provider</td>
+</tr>
+<tr>
+<td>Some sites work, some do not</td>
+<td>DNS problem</td>
+</tr>
+</tbody>
+</table>
+<h2 id="step-2-restart-the-modem-and-router">Step 2: Restart the modem and router</h2>
+<p>Many problems end here.</p>
+<ol>
+<li>Unplug the power from the modem and the router.</li>
+<li>Wait 30 seconds.</li>
+<li>Plug in the modem first and wait until its lights settle, then plug in the router.</li>
+<li>Wait two minutes and test again.</li>
+</ol>
+<h2 id="step-3-check-cables-and-lights">Step 3: Check cables and lights</h2>
+<ul>
+<li>Make sure the network cable clicks firmly into both the computer and the router</li>
+<li>Look at the lights on the network port. A light that is off can point to a bad cable or port</li>
+<li>Try a <strong>different cable</strong> and a <strong>different port on the router</strong></li>
+<li>Check the cable running into the modem is not loose</li>
+</ul>
+<h2 id="step-4-run-the-windows-network-troubleshooter">Step 4: Run the Windows network troubleshooter</h2>
+<ol>
+<li>Open <strong>Settings &gt; Network &amp; Internet</strong>.</li>
+<li>Choose <strong>Network troubleshooter</strong> (or <strong>Advanced network settings &gt; Network reset</strong> later if needed).</li>
+<li>Follow the steps and read the result it gives.</li>
+</ol>
+<h2 id="step-5-release-and-renew-the-ip-address">Step 5: Release and renew the IP address</h2>
+<ol>
+<li>Click Start, type <code>cmd</code>, right-click <strong>Command Prompt</strong>, and choose <strong>Run as administrator</strong>.</li>
+<li>Type these commands, pressing Enter after each one:</li>
+</ol>
+<pre><code>ipconfig /release
+ipconfig /renew
+ipconfig /flushdns
+</code></pre>
+<ol start="3">
+<li>Test the internet again.</li>
+</ol>
+<h2 id="step-6-check-what-ip-address-you-received">Step 6: Check what IP address you received</h2>
+<p>In the same Command Prompt window, type:</p>
+<pre><code>ipconfig
+</code></pre>
+<p>Look at <strong>IPv4 Address</strong>:</p>
+<ul>
+<li>If it starts with <strong>169.254</strong>, your computer did not get an address from the router. Check the cable and router, and make sure DHCP is turned on in the router settings.</li>
+<li>If it looks like <strong>192.168.x.x</strong> or <strong>10.x.x.x</strong>, you have a normal address, so continue.</li>
+</ul>
+<h2 id="step-7-find-where-the-connection-stops-using-ping">Step 7: Find where the connection stops using ping</h2>
+<p>Type these commands one at a time:</p>
+<ol>
+<li><code>ping 192.168.1.1</code> (use your router's address, shown as <strong>Default Gateway</strong> in <code>ipconfig</code>)</li>
+<li><code>ping 8.8.8.8</code></li>
+<li><code>ping google.com</code></li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>What happens</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>First ping fails</td>
+<td>Problem between your PC and the router (cable, adapter, IP settings)</td>
+</tr>
+<tr>
+<td>First works, second fails</td>
+<td>Router has no internet (modem, provider)</td>
+</tr>
+<tr>
+<td>Second works, third fails</td>
+<td><strong>DNS problem</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="step-8-fix-a-dns-problem">Step 8: Fix a DNS problem</h2>
+<p>If <code>ping 8.8.8.8</code> works but <code>ping google.com</code> fails, change your DNS servers:</p>
+<ol>
+<li>Open <strong>Control Panel &gt; Network and Sharing Center &gt; Change adapter settings</strong>.</li>
+<li>Right-click your connection and choose <strong>Properties</strong>.</li>
+<li>Double-click <strong>Internet Protocol Version 4 (TCP/IPv4)</strong>.</li>
+<li>Choose <strong>Use the following DNS server addresses</strong> and enter <code>8.8.8.8</code> and <code>8.8.4.4</code> (or <code>1.1.1.1</code> and <code>1.0.0.1</code>).</li>
+<li>Click OK and test.</li>
+</ol>
+<h2 id="step-9-reset-the-network-stack">Step 9: Reset the network stack</h2>
+<p>If nothing worked, reset the network settings. In an administrator Command Prompt:</p>
+<pre><code>netsh winsock reset
+netsh int ip reset
+</code></pre>
+<p>Restart the computer afterwards.</p>
+<h2 id="step-10-check-proxy-vpn-and-security-software">Step 10: Check proxy, VPN and security software</h2>
+<ul>
+<li>Turn off any <strong>VPN</strong> and test</li>
+<li>Open <strong>Settings &gt; Network &amp; Internet &gt; Proxy</strong> and make sure no proxy is turned on unless you use one</li>
+<li>Temporarily test with your firewall or third-party security program paused (turn it back on right after)</li>
+</ul>
+<h2 id="step-11-contact-your-internet-provider">Step 11: Contact your internet provider</h2>
+<p>If every device is offline, the modem lights show a problem, and a restart did not help, call your provider. Tell them which steps you have already tried and which lights are on or off. It will save time.</p>
+<h2 id="prevention-tips">Prevention tips</h2>
+<ul>
+<li>Use good-quality network cables</li>
+<li>Restart the router every few weeks if it is old</li>
+<li>Keep Windows and network drivers updated</li>
+<li>Avoid manual IP addresses unless needed, to prevent conflicts</li>
+</ul>
+<p>Need help with a specific error? Send the details on the <a href="../contact.html">Contact page</a>.</p></div>
+  <aside class="help-box">
+    <strong>Still stuck?</strong> Tell me your device model, your operating system and the exact error message on the
+    <a href="../contact.html">Contact page</a> and I will try to help.
+  </aside>
+</article>
+<section class="related"><h2>More guides you may need</h2><div class="grid">
+<article class="card">
+  <span class="tag">Windows &amp; PC</span>
+  <h3><a href="../articles/computer-running-slow-fixes.html">Computer Running Slow? 7 Free Fixes to Try Today</a></h3>
+  <p>Slow Windows PC? These 7 free fixes, from startup programs to disk cleanup and system file repair, can speed it up without buying anything.</p>
+  <p class="meta">October 15, 2026 &middot; 3 min read</p>
+</article>
+<article class="card">
+  <span class="tag">Printers</span>
+  <h3><a href="../articles/epson-printer-paper-out-error.html">Epson Printer Says &quot;Paper Out&quot; but Paper Is Loaded? Try This Fix First</a></h3>
+  <p>Your Epson printer shows a Paper Out error even though paper is loaded. Here are the causes and 7 fixes, from the quickest to the most thorough.</p>
+  <p class="meta">October 15, 2026 &middot; 5 min read</p>
+</article>
+<article class="card">
+  <span class="tag">Excel Tutorials</span>
+  <h3><a href="../articles/excel-inventory-stock-monitoring.html">Excel Inventory Sheet: Track Stock In and Out With Simple Formulas</a></h3>
+  <p>Build an Excel stock monitoring sheet that updates automatically. Uses SUMIFS and IF formulas that work in Excel 2019 and newer, with a low-stock warning.</p>
+  <p class="meta">October 15, 2026 &middot; 4 min read</p>
+</article></div></section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>Tech Fix Notes</strong> &mdash; Fix it yourself: PC, printer, Excel and network guides</p>
+    <p class="footer-links">
+      <a href="../about.html">About</a>
+      <a href="../contact.html">Contact</a>
+      <a href="../privacy-policy.html">Privacy Policy</a>
+      <a href="../disclaimer.html">Disclaimer</a>
+    </p>
+    <p class="small">&copy; 2026 Tech Fix Notes. All rights reserved.</p>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,5 @@
+# Netlify settings: publish the ready-made "site" folder, no build step needed.
+# (Only used if you upload the whole project instead of just the "site" folder.)
+[build]
+  publish = "site"
+  command = "echo Using the prebuilt site folder"

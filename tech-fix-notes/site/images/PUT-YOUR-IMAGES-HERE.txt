@@ -1,0 +1,3 @@
+Save your screenshots and photos in this folder (png or jpg, under 300 KB each).
+In an article, show one with:  ![What the picture shows](../images/your-file.png)
+Then run: python3 build.py
